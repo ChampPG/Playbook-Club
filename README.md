@@ -1,2 +1,2 @@
-# Solid Tortoise Branch
-This branch is the SYS265 Final for Joe Eastman. From the Group Solid-Toroise (Paul, Oliver, Eric)
+# Solid-Tortoise
+Files here are 1.0+ and should be ready for use
