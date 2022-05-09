@@ -1,0 +1,27 @@
+# Installs docker for use with Ansible playbook on hosts under the heading "ansible-docker"
+
+- hosts: ansible-docker
+  become: true
+  tasks:
+    - name: Enable epel-release (if necessary)
+      ansible.builtin.package:
+        name:
+        - epel-release
+        state: present
+      # |lower so redhat does not need capitalization
+      when: ansible_facts['os_family']|lower == 'redhat'
+
+      # Dont need virtualenv unless calling it
+    - name: Install prereqs for pip
+      ansible.builtin.package:
+        name:
+        - python3-pip
+        - python-setuptools
+        state: present
+
+    - name: Install Docker SDK, Docker-Compose SDK & PyYAML
+      ansible.builtin.pip:
+        name: 
+        - docker
+        - PyYAML
+        - docker-compose
