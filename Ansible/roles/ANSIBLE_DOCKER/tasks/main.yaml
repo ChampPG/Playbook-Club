@@ -1,4 +1,4 @@
-# Installs docker for use with Ansible playbook on hosts under the heading "ansible-docker"
+# Installs docker for use with Ansible playbook on hosts under the heading "ansible-docker" in inventory file
 
 - hosts: ansible-docker
   become: true
