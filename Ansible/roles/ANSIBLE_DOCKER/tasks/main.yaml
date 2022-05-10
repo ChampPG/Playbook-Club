@@ -1,35 +1,32 @@
-# Installs docker for use with Ansible playbook on hosts under the heading "ansible-docker" in inventory file
+# Installs docker for use with Ansible playbook on hosts (hosts on the top & other stuff is not required here since this is a role, they are required in the playbook that uses this role)
 
-- hosts: ansible-docker
-  become: true
-  tasks:
-    - name: Enable epel-release (if necessary)
-      ansible.builtin.package:
-        name:
-        - epel-release
-        state: present
-      # |lower so redhat does not need capitalization
-      when:
-       - ansible_facts['distribution']|lower == 'centos'
-       - ansible_facts['distribution_major_version'] == "7"
+- name: Enable epel-release (if necessary)
+  ansible.builtin.package:
+    name:
+    - epel-release
+    state: present
+  # |lower so redhat does not need capitalization
+  when:
+    - ansible_facts['distribution']|lower == 'centos'
+    - ansible_facts['distribution_major_version'] == "7"
 
-    - name: Ensure python 3 installed
-      ansible.builtin.package:
-        name:
-        - python3
-        state: present
+- name: Ensure python 3 installed
+  ansible.builtin.package:
+    name:
+    - python3
+    state: present
 
-      # Dont need virtualenv unless calling it
-    - name: Install prereqs for pip module
-      ansible.builtin.package:
-        name:
-        - python3-pip
-        - python-setuptools
-        state: present
+  # Dont need virtualenv unless calling it
+- name: Install prereqs for pip module
+  ansible.builtin.package:
+    name:
+    - python3-pip
+    - python-setuptools
+    state: present
 
-    - name: Install Docker SDK, Docker-Compose SDK & PyYAML with pip
-      ansible.builtin.pip:
-        name: 
-        - docker
-        - PyYAML
-        - docker-compose
+- name: Install Docker SDK, Docker-Compose SDK & PyYAML with pip
+  ansible.builtin.pip:
+    name: 
+    - docker
+    - PyYAML
+    - docker-compose
