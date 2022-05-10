@@ -9,17 +9,25 @@
         - epel-release
         state: present
       # |lower so redhat does not need capitalization
-      when: ansible_facts['os_family']|lower == 'redhat'
+      when:
+       - ansible_facts['distribution']|lower == 'centos'
+       - ansible_facts['distribution_major_version'] == "7"
+
+    - name: Ensure python 3 installed
+      ansible.builtin.package:
+        name:
+        - python3
+        state: present
 
       # Dont need virtualenv unless calling it
-    - name: Install prereqs for pip
+    - name: Install prereqs for pip module
       ansible.builtin.package:
         name:
         - python3-pip
         - python-setuptools
         state: present
 
-    - name: Install Docker SDK, Docker-Compose SDK & PyYAML
+    - name: Install Docker SDK, Docker-Compose SDK & PyYAML with pip
       ansible.builtin.pip:
         name: 
         - docker
