@@ -27,7 +27,7 @@ wait
 sudo su - $hatchling -c 'ssh-keygen -t rsa'
 
 # Let user know what they now need to do
-echo "[Will need to git clone https://Solid-Tortoise/Oliver-Mustoe/Solid-Tortoise for $hatchling]"
+echo "[Will need to git clone https://github.com/ChampPG/Playbook-Club for $hatchling]"
 
 # Prompts user that system will now reboot
 read -p "Your system will now reboot..."
