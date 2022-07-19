@@ -10,7 +10,7 @@ wait
 sudo usermod -aG sudo $hatchling
 
 # Create "sys265" file
-echo "$hatchling     ALL=(ALL)     NOPASSWD: ALL" >> sys265
+echo "$hatchling     ALL=(ALL)     NOPASSWD: ALL" >> eastman
 
 # Copy sys265 to "/etc/sudoers.d/sys265"
 sudo cp sys265 /etc/sudoers.d/sys265
